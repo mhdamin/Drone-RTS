@@ -5,20 +5,20 @@ import threading
 import time
 import PySimpleGUI as sg
 
+
 class Tello():
 
-
     def __init__(self):
-        IP_DRONE = '192.168.0.1'
-        PORT_DRONE = 8889
-        IP_PC = ''
-        PORT_PC = 9000
+        ip_drone = '192.168.10.1'
+        port_drone = 8889
+        ip_pc = ''
+        port_pc = 9000
 
         # IP and port of Tello
-        self.tello_address = (IP_DRONE, PORT_DRONE)
+        self.tello_address = (ip_drone, port_drone)
 
         # IP and port of local computer
-        self.local_address = (IP_PC, PORT_PC)
+        self.local_address = (ip_pc, port_pc)
 
         # Create a UDP connection that we'll send the command to
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -57,25 +57,3 @@ class Tello():
                 self.sock.close()
                 print("Error receiving: " + str(e))
             break
-
-    def edit_connection(self):
-
-        layout = [
-            [sg.Text('IP Address of Tello', size=(20, 1)), sg.InputText(key='-IP_DRONE-')],
-            [sg.Text('Port of Tello', size=(20, 1)), sg.InputText(key='-PORT_DRONE-')],
-            [sg.Text('IP Address of Local PC', size=(20, 1)), sg.InputText(key='-IP_PC-')],
-            [sg.Text('Port of Local PC', size=(20, 1)), sg.InputText(key='-PORT_PC-')],
-            [sg.Button('Submit'), sg.Button('Cancel')]]
-
-        window = sg.Window('Edit Connection Setup', layout)
-        event, values = window.read(close=True)
-
-        if event == 'Submit':
-            print('Drone IP:', values['-IP_DRONE-'], '\nDrone PORT:', values['-PORT_DRONE-'], '\nPC IP:',
-                  values['-IP_PC-'], '\nPC PORT:', values['-PORT_PC-'])
-        else:
-            print('User cancelled')
-
-    edit_connection()
-
-
