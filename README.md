@@ -4,7 +4,7 @@
 
 This is a collection of python-based sample code that interact with the Ryze Tello drone.
 
-##How to Install
+## How to Install
 
 1. Make sure you register your SSH on github (https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
 2. Clone this repository using github desktop. (File -> Clone Repository -> Url -> enter URL: git@github.com:cleopatez/Drone-RTS.git
