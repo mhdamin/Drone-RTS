@@ -155,11 +155,6 @@ class TelloUI:
                           justify="left")
         text1.pack(side="top")
 
-        self.btn_pre_plan = tki.Button(
-            panel, text="Start Pre Plan Route", relief="raised", command=self.startPreplanRoute)
-        self.btn_pre_plan.pack(side="bottom", fill="both",
-                             expand="yes", padx=10, pady=5)
-
         self.btn_flight = tki.Button(
             panel, text="Get Flight Time", relief="raised", command=self.getFlightTime)
         self.btn_flight.pack(side="bottom", fill="both",
@@ -205,6 +200,11 @@ class TelloUI:
 
         self.btn_landing = tki.Button(
             panel, text="Flip", relief="raised", command=self.openFlipWindow)
+        self.btn_landing.pack(side="bottom", fill="both",
+                              expand="yes", padx=10, pady=5)
+
+        self.btn_landing = tki.Button(
+            panel, text="Pre Plan Route", relief="raised", command=self.openPrePlanWindow)
         self.btn_landing.pack(side="bottom", fill="both",
                               expand="yes", padx=10, pady=5)
 

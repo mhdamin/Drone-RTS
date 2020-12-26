@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee938ef0-f655-4eee-ba54-d18bd148cdd8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Single_Tello_Test/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/Single_Tello_Test/stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Single_Tello_Test/tello.py" beforeDir="false" afterPath="$PROJECT_DIR$/Single_Tello_Test/tello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Single_Tello_Test/tello_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Single_Tello_Test/tello_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tello_Video/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tello_Video/tello.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video/tello.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tello_Video/tello_control_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video/tello_control_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello_control_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello_control_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello_pose.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tello_Video_With_Pose_Recognition/tello_pose.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
