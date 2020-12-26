@@ -4,6 +4,13 @@
 
 This is a collection of python-based sample code that interact with the Ryze Tello drone.
 
+##How to Install
+
+1. Make sure you register your SSH on github (https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+2. Clone this repository using github desktop. (File -> Clone Repository -> Url -> enter URL: git@github.com:cleopatez/Drone-RTS.git
+3. Import this project into PycharmProjects directory. (E.g: C:\Users\{USER}\PycharmProjects\Drone-RTS
+4. Pepandai idop.
+
 ## Project Description
 
 This toolkit contains three sample programs based on tello sdk and python2.7,including Single_Tello_Test, Tello_Video, and Tello_Video (With_Pose_Recognition). There is also a program file named tello_state.py.
@@ -29,8 +36,3 @@ This toolkit contains three sample programs based on tello sdk and python2.7,inc
 The sample codes above are based on python2.7.There is no need to install additional third-party libraries for running Single_Tello_Test and tello_state.py.For Tello_Video and Tello_Video (With_Pose_Recognition), you need to install a series of third-party libraries. Therefore, in these two folders, a one-click installation script (based on windows32/64, linux and macos) is provided, which can facilitate you with installing all relevant dependencies.
 
 Specific to the content and description of each package, you can refer to the readme file in the related folder.
-
-
-## Contact Information
-
-If you have any questions about this sample code and the installation, please feel free to contact me. You can communicate with me by sending e-mail to sdk@ryzerobotics.com.
