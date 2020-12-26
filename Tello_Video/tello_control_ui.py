@@ -208,11 +208,6 @@ class TelloUI:
         self.btn_landing.pack(side="bottom", fill="both",
                               expand="yes", padx=10, pady=5)
 
-        self.btn_landing = tki.Button(
-            panel, text="Pre Plan Route", relief="raised", command=self.openPrePlanWindow)
-        self.btn_landing.pack(side="bottom", fill="both",
-                              expand="yes", padx=10, pady=5)
-
         self.distance_bar = Scale(panel, from_=0.02, to=5, tickinterval=0.01, digits=3, label='Distance(m)',
                                   resolution=0.01)
         self.distance_bar.set(0.2)

@@ -341,7 +341,8 @@ class Tello:
         return speed
 
     def start_pre_plan(self):
-        # Not sure if this will run or not in realtime, doctor's example code would be the backup.
+        # Not sure if this will run or not in realtime, doctor's/arina's
+        # example code would be the backup to replace this.
 
         # Travel to/from starting checkpoint 0 from/to the charging base
         frombase = ["forward", 50, "ccw", 150]
