@@ -341,58 +341,62 @@ class Tello:
         return speed
 
     def start_pre_plan(self):
-        # Not sure if this will run or not in realtime, doctor's/arina's
-        # example code would be the backup to replace this.
 
-        # Travel to/from starting checkpoint 0 from/to the charging base
-        frombase = ["forward", 50, "ccw", 150]
-        tobase = ["ccw", 150, "forward", 50]
+        self.is_running = True
 
-        # Flight path to Checkpoint 1 to 5 and back to Checkpoint 0 sequentially
-        checkpoint = [[1, "cw", 90, "forward", 100], [2, "ccw", 90, "forward", 80], [3, "ccw", 90, "forward", 40],
-                      [4, "ccw", 90, "forward", 40], [5, "cw", 90, "forward", 60], [0, "ccw", 90, "forward", 40]]
+        while self.is_running == True:
+            # Not sure if this will run or not in realtime, doctor's/arina's
+            # example code would be the backup to replace this.
 
-        # Put Tello into command mode
-        Tello.send_command(self, "command", 3)
+            # Travel to/from starting checkpoint 0 from/to the charging base
+            frombase = ["forward", 50, "ccw", 150]
+            tobase = ["ccw", 150, "forward", 50]
 
-        # Send the takeoff command
-        Tello.send_command(self, "takeoff", 3)
+            # Flight path to Checkpoint 1 to 5 and back to Checkpoint 0 sequentially
+            checkpoint = [[1, "cw", 90, "forward", 100], [2, "ccw", 90, "forward", 80], [3, "ccw", 90, "forward", 40],
+                          [4, "ccw", 90, "forward", 40], [5, "cw", 90, "forward", 60], [0, "ccw", 90, "forward", 40]]
 
-        print("\n")
+            # Put Tello into command mode
+            Tello.send_command(self, "command", 3)
 
-        # Start at checkpoint 1 and print destination
-        print("From the charging base to the starting checkpoint of sweep pattern.\n")
+            # Send the takeoff command
+            Tello.send_command(self, "takeoff", 3)
 
-        Tello.send_command(self, frombase[0] + " " + str(frombase[1]), 4)
-        Tello.send_command(self, frombase[2] + " " + str(frombase[3]), 4)
+            print("\n")
 
-        print("Current location: Checkpoint 0 " + "\n")
+            # Start at checkpoint 1 and print destination
+            print("From the charging base to the starting checkpoint of sweep pattern.\n")
 
-        # Billy's flight path
-        for i in range(len(checkpoint)):
-            if i == len(checkpoint) - 1:
-                print("Returning to Checkpoint 0. \n")
+            Tello.send_command(self, frombase[0] + " " + str(frombase[1]), 4)
+            Tello.send_command(self, frombase[2] + " " + str(frombase[3]), 4)
 
-            Tello.send_command(self, checkpoint[i][1] + " " + str(checkpoint[i][2]), 4)
-            Tello.send_command(self, checkpoint[i][3] + " " + str(checkpoint[i][4]), 4)
+            print("Current location: Checkpoint 0 " + "\n")
 
-            print("Arrived at current location: Checkpoint " + str(checkpoint[i][0]) + "\n")
-            time.sleep(4)
+            # Billy's flight path
+            for i in range(len(checkpoint)):
+                if i == len(checkpoint) - 1:
+                    print("Returning to Checkpoint 0. \n")
 
-        # Reach back at Checkpoint 0
-        print("Complete sweep. Return to charging base.\n")
-        Tello.send_command(self, tobase[0] + " " + str(tobase[1]))
-        Tello.send_command(self, tobase[2] + " " + str(tobase[3]))
+                Tello.send_command(self, checkpoint[i][1] + " " + str(checkpoint[i][2]), 4)
+                Tello.send_command(self, checkpoint[i][3] + " " + str(checkpoint[i][4]), 4)
 
-        # Turn to original direction before land
-        print("Turn to original direction before land.\n")
-        Tello.send_command(self, "cw 180", 4)
+                print("Arrived at current location: Checkpoint " + str(checkpoint[i][0]) + "\n")
+                time.sleep(4)
 
-        # Land
-        Tello.send_command(self, "land", 3)
+            # Reach back at Checkpoint 0
+            print("Complete sweep. Return to charging base.\n")
+            Tello.send_command(self, tobase[0] + " " + str(tobase[1]))
+            Tello.send_command(self, tobase[2] + " " + str(tobase[3]))
 
-        # Close the socket
-        # self.socket.close()
+            # Turn to original direction before land
+            print("Turn to original direction before land.\n")
+            Tello.send_command(self, "cw 180", 4)
+
+            # Land
+            Tello.send_command(self, "land", 3)
+
+            # Close the socket
+            # self.socket.close()
 
     def interruptDrone(self):
         """

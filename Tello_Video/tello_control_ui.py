@@ -26,7 +26,7 @@ class TelloUI:
         self.outputPath = outputpath # the path that save pictures created by clicking the takeSnapshot button 
         self.frame = None  # frame read from h264decoder and used for pose recognition 
         self.thread = None # thread of the Tkinter mainloop
-        self.stopEvent = None  
+        self.stopEvent = None
         
         # control variables
         self.distance = 0.1  # default distance for 'move' cmd
@@ -66,6 +66,10 @@ class TelloUI:
 
         # the sending_command will send command to tello every 5 seconds
         # self.sending_command_thread = threading.Thread(target = self._sendingCommand)
+
+        global is_running
+        self.is_running = None
+
     def videoLoop(self):
         """
         The mainloop thread of Tkinter 
@@ -261,6 +265,7 @@ class TelloUI:
         """
 
         panel = Toplevel(self.root)
+        panel.geometry("350x250+300+300")
         panel.wm_title("Gesture Recognition")
 
         self.btn_end = tki.Button(
@@ -311,10 +316,25 @@ class TelloUI:
             self.tello.video_freeze(True)
 
     def startPreplanRoute(self):
-        return self.tello.start_pre_plan()
+        if self.is_running is None:
+            self.is_running = True
+            self.threadPreplan = threading.Thread(target=self.tello.start_pre_plan)
+            self.threadPreplan.start()
+            # return self.tello.start_pre_plan()
+        else:
+            print("Only one instance of pre-plan route allowed.")
 
     def interruptDrone(self):
-        return self.tello.interruptDrone()
+        try:
+            print(self.is_running)
+            self.is_running = False
+            self.threadPreplan.join(0)
+            self.threadPreplan = None
+            self.interruptDrone()
+        except (AttributeError, RuntimeError):  # preplan thread could be None
+            pass
+
+        # return self.tello.interruptDrone()
 
     def resumeDrone(self):
         return self.tello.resumeDrone()
