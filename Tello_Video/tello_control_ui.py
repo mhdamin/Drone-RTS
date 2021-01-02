@@ -316,8 +316,8 @@ class TelloUI:
             self.tello.video_freeze(True)
 
     def startPreplanRoute(self):
-        if self.is_running is None:
-            self.is_running = True
+        if self.tello.is_running is False:
+            self.tello.is_running = True
             self.threadPreplan = threading.Thread(target=self.tello.start_pre_plan)
             self.threadPreplan.start()
             # return self.tello.start_pre_plan()
@@ -326,8 +326,10 @@ class TelloUI:
 
     def interruptDrone(self):
         try:
-            print(self.is_running)
-            self.is_running = False
+            # print(self.is_running)
+            # self.tello.is_running = False
+            self.tello.preplan_pause = True
+            print("Pre-plan route has been paused!")
             self.threadPreplan.join(0)
             self.threadPreplan = None
             self.interruptDrone()
