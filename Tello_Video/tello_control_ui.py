@@ -269,10 +269,10 @@ class TelloUI:
         panel.geometry("350x250+300+300")
         panel.wm_title("Pre Plan Route")
 
-        self.btn_end = tki.Button(
-            panel, text="End/Emergency", relief="raised", command=self.emergency)
-        self.btn_end.pack(side="bottom", fill="both",
-                            expand="yes", padx=10, pady=5)
+        # self.btn_end = tki.Button(
+        #     panel, text="End/Emergency", relief="raised", command=self.emergency)
+        # self.btn_end.pack(side="bottom", fill="both",
+        #                     expand="yes", padx=10, pady=5)
 
         self.btn_resume = tki.Button(
             panel, text="Resume Pre Plan", relief="raised", command=self.resumeDrone)

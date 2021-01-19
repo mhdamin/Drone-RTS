@@ -382,8 +382,6 @@ class Tello:
         self.is_running = True
 
         while self.is_running == True:
-            # Not sure if this will run or not in realtime, doctor's/arina's
-            # example code would be the backup to replace this.
 
             # Travel to/from starting checkpoint 0 from/to the charging base
             frombase = ["forward", 50, "ccw", 150]
