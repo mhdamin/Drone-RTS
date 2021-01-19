@@ -21,6 +21,7 @@ class Tello:
         :param tello_ip (str): Tello IP.
         :param tello_port (int): Tello port.
         """
+        self.is_emergency = False
         self.is_running = False
         self.preplan_pause = False
         self.abort_flag = False
@@ -141,7 +142,7 @@ class Tello:
         :return (str): Response from Tello.
 
         """
-
+        self.is_emergency = False
         print(">> send cmd: {}".format(command))
         self.abort_flag = False
         timer = threading.Timer(self.command_timeout, self.set_abort_flag)
@@ -173,8 +174,14 @@ class Tello:
         :return (str): Response from Tello.
 
         """
+
         while self.preplan_pause is True:
-            time.sleep(1)
+            if self.is_emergency is True:
+                self.response = None
+                self.is_running = False
+                return response
+            else:
+                time.sleep(1)
         else:
             pass
 
@@ -404,7 +411,12 @@ class Tello:
 
             # Start at checkpoint 1 and print destination
             while self.preplan_pause is True:
-                time.sleep(1)
+                if self.is_emergency is True:
+                    self.response = None
+                    self.is_running = False
+                    return response
+                else:
+                    time.sleep(1)
             else:
                 print("From the charging base to the starting checkpoint of sweep pattern.\n")
 
@@ -412,7 +424,12 @@ class Tello:
             Tello.send_command_preplan(self, frombase[2] + " " + str(frombase[3]), 4)
 
             while self.preplan_pause is True:
-                time.sleep(1)
+                if self.is_emergency is True:
+                    self.response = None
+                    self.is_running = False
+                    return response
+                else:
+                    time.sleep(1)
             else:
                 print("Current location: Checkpoint 0 " + "\n")
 
@@ -421,7 +438,12 @@ class Tello:
             for i in range(len(checkpoint)):
                 if i == len(checkpoint) - 1:
                     while self.preplan_pause is True:
-                        time.sleep(1)
+                        if self.is_emergency is True:
+                            self.response = None
+                            self.is_running = False
+                            return response
+                        else:
+                            time.sleep(1)
                     else:
                         print("Returning to Checkpoint 0. \n")
 
@@ -429,7 +451,12 @@ class Tello:
                 Tello.send_command_preplan(self, checkpoint[i][3] + " " + str(checkpoint[i][4]), 4)
 
                 while self.preplan_pause is True:
-                    time.sleep(1)
+                    if self.is_emergency is True:
+                        self.response = None
+                        self.is_running = False
+                        return response
+                    else:
+                        time.sleep(1)
                 else:
                     print("Arrived at current location: Checkpoint " + str(checkpoint[i][0]) + "\n")
 
@@ -437,7 +464,12 @@ class Tello:
 
             # Reach back at Checkpoint 0
             while self.preplan_pause is True:
-                time.sleep(1)
+                if self.is_emergency is True:
+                    self.response = None
+                    self.is_running = False
+                    return response
+                else:
+                    time.sleep(1)
             else:
                 print("Complete sweep. Return to charging base.\n")
             Tello.send_command_preplan(self, tobase[0] + " " + str(tobase[1]), 4)
@@ -445,7 +477,12 @@ class Tello:
 
             # Turn to original direction before land
             while self.preplan_pause is True:
-                time.sleep(1)
+                if self.is_emergency is True:
+                    self.response = None
+                    self.is_running = False
+                    return response
+                else:
+                    time.sleep(1)
             else:
                 print("Turn to original direction before land.\n")
             Tello.send_command_preplan(self, "cw 180", 4)
@@ -476,6 +513,10 @@ class Tello:
     def emergency(self):
         """Stop all motors immediately.
         """
+        print("Emergency initiated!")
+        self.is_emergency = True
+        self.preplan_pause = True
+        self.is_running = False
         return self.send_command('emergency', 0)
 
     def land(self):
