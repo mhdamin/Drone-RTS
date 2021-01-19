@@ -466,7 +466,8 @@ class Tello:
     def resumeDrone(self):
         """
         Resume drone operation based on the last location it stopped.
-        Reversed the whole movement during interruption and start from the start of interruption.
+        Reversed the whole movement during interruption and start
+        from the start of interruption.
         """
         self.preplan_pause = False
         print("Pre-plan route has been resumed!")

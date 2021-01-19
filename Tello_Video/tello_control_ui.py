@@ -237,7 +237,8 @@ class TelloUI:
         """
         
         panel = Toplevel(self.root)
-        panel.wm_title("Gesture Recognition")
+        panel.geometry("350x250+300+300")
+        panel.wm_title("Flip Window")
 
         self.btn_flipl = tki.Button(
             panel, text="Flip Left", relief="raised", command=self.telloFlip_l)
@@ -266,7 +267,7 @@ class TelloUI:
 
         panel = Toplevel(self.root)
         panel.geometry("350x250+300+300")
-        panel.wm_title("Gesture Recognition")
+        panel.wm_title("Pre Plan Route")
 
         self.btn_end = tki.Button(
             panel, text="End/Emergency", relief="raised", command=self.emergency)
@@ -326,17 +327,13 @@ class TelloUI:
 
     def interruptDrone(self):
         try:
-            # print(self.is_running)
-            # self.tello.is_running = False
             self.tello.preplan_pause = True
             print("Pre-plan route has been paused!")
             self.threadPreplan.join(0)
             self.threadPreplan = None
             self.interruptDrone()
-        except (AttributeError, RuntimeError):  # preplan thread could be None
+        except (AttributeError, RuntimeError):
             pass
-
-        # return self.tello.interruptDrone()
 
     def resumeDrone(self):
         return self.tello.resumeDrone()
